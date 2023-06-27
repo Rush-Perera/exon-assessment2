@@ -96,7 +96,7 @@ include "com/database.php"
                         </div>
                         <div class="mb-3">
                             <label for="invoice_value" class="form-label">Invoice Value</label>
-                            <input class="form-control" id="invoice_value" rows="3"></input>
+                            <input class="form-control" id="invoice_value"></input>
                         </div>
                     </div>
                     <div class="modal-footer">

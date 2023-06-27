@@ -60,26 +60,6 @@ include "com/database.php"
             </div>
         </div>
 
-
-        <?php
-
-        //get the last invoice id from invoice table
-        $q = "SELECT id FROM invoice ORDER BY id DESC LIMIT 1";
-        $resultset = Database::pull($q);
-        $stringValue = $resultset->fetch_assoc()['id'];
-
-        // Extract the numeric portion of the string
-        $numericValue = intval(substr($stringValue, 2));
-
-        // Add 1 to the numeric value
-        $numericValue++;
-
-        // Combine the numeric value with the original string prefix
-        $new_id = substr($stringValue, 0, 2) . str_pad($numericValue, strlen($stringValue) - 2, '0', STR_PAD_LEFT);
-
-
-        ?>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -92,17 +72,17 @@ include "com/database.php"
 
                         <div class="mb-3">
                             <label for="invoice_id" class="form-label">Invoice Id</label>
-                            <input type="text" class="form-control" id="invoice_id" disabled
-                                placeholder="<?php echo $new_id ?>" value="<?php echo $new_id ?>">
+                            <input type="text" class="form-control" id="cheque_id"
+                                placeholder="Enter Id">
                         </div>
                         <div class="mb-3">
                             <label for="invoice_value" class="form-label">Invoice Value</label>
-                            <input class="form-control" id="invoice_value" rows="3"></input>
+                            <input class="form-control" id="cheque_value"></input>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="addInvoice()">Save Invoice</button>
+                        <button type="button" class="btn btn-primary" onclick="addCheque()">Add</button>
                     </div>
                 </div>
             </div>
