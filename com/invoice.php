@@ -1,6 +1,6 @@
-<div class="container p-3">
+
     <div class="card">
-        <h5 class="card-header" style="text-align: center">Featured</h5>
+        <h5 class="card-header" style="text-align: center">Invoice</h5>
         <div class="card-body">
             <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</a>
 
@@ -43,8 +43,17 @@
 //get the last invoice id from invoice table
 $q = "SELECT id FROM invoice ORDER BY id DESC LIMIT 1";
 $resultset = Database::pull($q);
-$invoice_id = $resultset->fetch_assoc()['id'];
-$new_id = "IN"+strval(explode("N",$invoice_id)[1] + 1);
+$stringValue = $resultset->fetch_assoc()['id'];
+
+// Extract the numeric portion of the string
+$numericValue = intval(substr($stringValue, 2));
+
+// Add 1 to the numeric value
+$numericValue++;
+
+// Combine the numeric value with the original string prefix
+$new_id = substr($stringValue, 0, 2) . str_pad($numericValue, strlen($stringValue) - 2, '0', STR_PAD_LEFT);
+
 
 ?>
 
@@ -61,7 +70,7 @@ $new_id = "IN"+strval(explode("N",$invoice_id)[1] + 1);
                 <div class="mb-3">
                     <label for="invoice_id" class="form-label">Invoice Id</label>
                     <input type="text" class="form-control" id="invoice_id" disabled
-                        placeholder="<?php echo $new_id ?>">
+                        placeholder="<?php echo $new_id ?>" value="<?php echo $new_id ?>">
                 </div>
                 <div class="mb-3">
                     <label for="invoice_value" class="form-label">Invoice Value</label>
@@ -70,8 +79,7 @@ $new_id = "IN"+strval(explode("N",$invoice_id)[1] + 1);
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save Invoice</button>
+                <button type="button" class="btn btn-primary" onclick="addInvoice()">Save Invoice</button>
             </div>
         </div>
     </div>
-</div>
