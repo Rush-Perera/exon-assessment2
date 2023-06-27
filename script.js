@@ -1,15 +1,25 @@
-$(document).ready(function () {
-    $('#toggleInvoice').click(function () {
-        alert("Invoice");
-        // $('#chead').html('Pending Events');
-        $('#toggleController').load('com/invoice.php');
-    });
-    $('#toggleCheque').click(function () {
-        // $('#chead').html('Pending Events');
-        alert("Cheque");
-        $('#toggleController').load('com/cheques.php');
-    });
-});
+// $(document).ready(function () {
+    
+//     document.getElementById("cheque_select").addeventlistener("change", function(){
+//         cheque_select = document.getElementById("cheque_select").value;
+//         f = new FormData();
+//         f.append("cheque_select", cheque_select);
+//         var xhttp = new XMLHttpRequest();
+//         xhttp.onreadystatechange = function(){
+//             if(xhttp.readyState === 4){
+//                 var t = xhttp.responseText;
+//                 if(t === "success"){
+//                     alert("success");
+//                 }else{
+//                     alert(t);
+//                 }
+//             }
+//         }
+//         xhttp.open("POST", "process/showbalance_process.php", true);
+//         xhttp.send(f);
+//     });
+// });
+
 
 function addInvoice(){
     // alert("Invoice Added");
@@ -36,4 +46,9 @@ function addInvoice(){
     }
     xhttp.open("POST", "process/add_invoice_process.php", true);
     xhttp.send(f);
+}
+
+
+function payInvoice() {
+    alert("Invoice Paid");
 }
